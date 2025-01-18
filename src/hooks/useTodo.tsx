@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-interface Todo {
+export interface Todo {
   id: number;
   content: string;
   isCompleted: boolean;
@@ -22,11 +22,12 @@ export const useTodo = () => {
 
   const completeTodos = todos.filter((todo) => todo.isCompleted === true);
   const pendingTodos = todos.filter((todo) => todo.isCompleted === false);
+  const [lastAddedId, setLastAddedId] = useState<number | null>(null);
 
   const sendTodo = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (todo.content === "") return;
-    if (e.key == "Enter") {
+    if (e.key === "Enter" && todo.content.trim() !== "") {
       setTodos([...todos, todo]);
+      setLastAddedId(todo.id);
       setTodo({
         ...modelTodo,
         id: todo.id + 1,
@@ -105,16 +106,17 @@ export const useTodo = () => {
     todos,
     todo,
     taskToEdit,
-
+    lastAddedId,
+    setLastAddedId,
     setTodo,
     setTaskToEdit,
     completeTodo,
     completeTodos,
+    pendingTodos,
     deleteTodo,
     editTodo,
     editTodoFinished,
     isEditingTodo,
-    pendingTodos,
     sendTodo,
     editDone,
   };
