@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export interface Todo {
   id: number;
@@ -16,13 +16,15 @@ const modelTodo = {
 
 export const useTodo = () => {
   const [isEditingTodo, setIsEditingTodo] = useState<boolean>(false);
+  const [lastAddedId, setLastAddedId] = useState<number | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string>("todos");
   const [taskToEdit, setTaskToEdit] = useState<Todo>(modelTodo);
   const [todo, setTodo] = useState<Todo>(modelTodo);
   const [todos, setTodos] = useState<Todo[]>([]);
 
+  const [categoryTodo, setCategoryTodo] = useState<Todo[]>(todos);
   const completeTodos = todos.filter((todo) => todo.isCompleted === true);
   const pendingTodos = todos.filter((todo) => todo.isCompleted === false);
-  const [lastAddedId, setLastAddedId] = useState<number | null>(null);
 
   const sendTodo = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && todo.content.trim() !== "") {
@@ -102,22 +104,62 @@ export const useTodo = () => {
     setIsEditingTodo(false);
     setTaskToEdit(modelTodo);
   };
+
+  const todosToShow = (category: string) => {
+    setActiveCategory(category);
+    switch (category) {
+      case "pending":
+        setCategoryTodo(pendingTodos);
+        break;
+      case "complete":
+        setCategoryTodo(completeTodos);
+        break;
+      case "todos":
+        setCategoryTodo(todos);
+        break;
+    }
+  };
+
+  useEffect(() => {
+    switch (activeCategory) {
+      case "pending":
+        setCategoryTodo(pendingTodos);
+        break;
+      case "complete":
+        setCategoryTodo(completeTodos);
+        break;
+      case "todos":
+      default:
+        setCategoryTodo(todos);
+        break;
+    }
+    if (lastAddedId != null) {
+      setTimeout(() => {
+        setLastAddedId(null);
+      }, 200);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [todos, setLastAddedId]);
+
   return {
     todos,
     todo,
     taskToEdit,
     lastAddedId,
+    completeTodos,
+    pendingTodos,
+    isEditingTodo,
+    categoryTodo,
+    activeCategory,
     setLastAddedId,
     setTodo,
     setTaskToEdit,
     completeTodo,
-    completeTodos,
-    pendingTodos,
     deleteTodo,
     editTodo,
     editTodoFinished,
-    isEditingTodo,
     sendTodo,
     editDone,
+    todosToShow,
   };
 };
