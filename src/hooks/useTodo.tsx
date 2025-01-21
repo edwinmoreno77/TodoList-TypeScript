@@ -69,18 +69,13 @@ export const useTodo = () => {
     id: number
   ) => {
     if (key === "Enter") {
+      if (taskToEdit.content.trim() === "") return;
       setTodos((prevTodos) =>
-        prevTodos.map((todo) => {
-          if (todo.id === id) {
-            setTaskToEdit(todo);
-            return {
-              ...todo,
-              content: taskToEdit.content,
-              isEditing: false,
-            };
-          }
-          return todo;
-        })
+        prevTodos.map((todo) =>
+          todo.id === id
+            ? { ...todo, content: taskToEdit.content, isEditing: false }
+            : todo
+        )
       );
       setIsEditingTodo(false);
       setTaskToEdit(modelTodo);
@@ -88,18 +83,13 @@ export const useTodo = () => {
   };
 
   const editDone = (id: number) => {
+    if (taskToEdit.content.trim() === "") return;
     setTodos((prevTodos) =>
-      prevTodos.map((todo) => {
-        if (todo.id === id) {
-          setTaskToEdit(todo);
-          return {
-            ...todo,
-            content: taskToEdit.content,
-            isEditing: false,
-          };
-        }
-        return todo;
-      })
+      prevTodos.map((todo) =>
+        todo.id === id
+          ? { ...todo, content: taskToEdit.content, isEditing: false }
+          : todo
+      )
     );
     setIsEditingTodo(false);
     setTaskToEdit(modelTodo);
