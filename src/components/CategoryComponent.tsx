@@ -1,15 +1,7 @@
 import { FC } from "react";
-import { Todo } from "../hooks/useTodo";
+import { CategoryInterface } from "../types";
 
-interface Props {
-  todosToShow: (category: string) => void;
-  completeTodos: Todo[];
-  pendingTodos: Todo[];
-  activeCategory: string;
-  todos: Todo[];
-}
-
-export const CategoryComponent: FC<Props> = ({
+export const CategoryComponent: FC<CategoryInterface> = ({
   todosToShow,
   activeCategory,
   todos,

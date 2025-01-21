@@ -1,15 +1,7 @@
 import { FC } from "react";
-import { Todo } from "../hooks/useTodo";
+import { LiCompInterface } from "../types";
 
-interface Props {
-  todo: Todo;
-  completeTodo: (id: number) => void;
-  isEditingTodo: boolean;
-  editTodo: (id: number) => void;
-  deleteTodo: (id: number) => void;
-}
-
-export const LiComponent: FC<Props> = ({
+export const LiComponent: FC<LiCompInterface> = ({
   todo,
   completeTodo,
   isEditingTodo,
@@ -18,7 +10,7 @@ export const LiComponent: FC<Props> = ({
 }) => {
   return (
     <li
-      className="flex px-1 text-xxs md:text-xs py-0 justify-between items-center group hover:bg-black"
+      className="flex px-1 text-xxs md:text-sm py-1 justify-between items-center group hover:bg-blue-900 border-2 border-blue-950"
       key={todo.id}
     >
       <div onClick={() => completeTodo(todo.id)} className="flex items-center">

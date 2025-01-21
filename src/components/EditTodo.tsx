@@ -1,18 +1,7 @@
 import { FC } from "react";
-import { Todo } from "../hooks/useTodo";
+import { EditTodoInterface } from "../types";
 
-interface Props {
-  setTaskToEdit: (object: Todo) => void;
-  taskToEdit: Todo;
-  editTodoFinished: (
-    event: React.KeyboardEvent<HTMLInputElement>,
-    id: number
-  ) => void;
-  editDone: (id: number) => void;
-  todo: Todo;
-}
-
-export const EditTodo: FC<Props> = ({
+export const EditTodo: FC<EditTodoInterface> = ({
   setTaskToEdit,
   taskToEdit,
   editTodoFinished,

@@ -9,8 +9,13 @@ export default {
       fontSize:{
         xxs:"0.625rem",
         tiny:"0.525rem"
-      }
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar')({ nocompatible: true }), 
+  ],
+  variants: {
+    scrollbar: ['dark'], 
+  },
 }

@@ -1,18 +1,6 @@
 import { useEffect, useState } from "react";
-
-export interface Todo {
-  id: number;
-  content: string;
-  isCompleted: boolean;
-  isEditing: boolean;
-}
-
-const modelTodo = {
-  id: 1,
-  content: "",
-  isCompleted: false,
-  isEditing: false,
-};
+import { Todo } from "../types";
+import { modelTodo } from "../utils/constants";
 
 export const useTodo = () => {
   const [isEditingTodo, setIsEditingTodo] = useState<boolean>(false);
@@ -26,7 +14,7 @@ export const useTodo = () => {
   const completeTodos = todos.filter((todo) => todo.isCompleted === true);
   const pendingTodos = todos.filter((todo) => todo.isCompleted === false);
 
-  const sendTodo = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const addTodo = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && todo.content.trim() !== "") {
       setTodos([...todos, todo]);
       setLastAddedId(todo.id);
@@ -38,17 +26,15 @@ export const useTodo = () => {
   };
 
   const deleteTodo = (id: number) => {
-    const filteredTodos = todos.filter((todo) => todo.id != id);
-    setTodos(filteredTodos);
+    setTodos((prev) => prev.filter((todo) => todo.id !== id));
   };
 
   const completeTodo = (id: number) => {
-    const completeTodos = todos.map((todo) => {
-      return todo.id === id
-        ? { ...todo, isCompleted: !todo.isCompleted }
-        : todo;
-    });
-    setTodos(completeTodos);
+    setTodos((prev) =>
+      prev.map((todo) =>
+        todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
+      )
+    );
   };
 
   const editTodo = (id: number) => {
@@ -148,7 +134,7 @@ export const useTodo = () => {
     deleteTodo,
     editTodo,
     editTodoFinished,
-    sendTodo,
+    addTodo,
     editDone,
     todosToShow,
   };
