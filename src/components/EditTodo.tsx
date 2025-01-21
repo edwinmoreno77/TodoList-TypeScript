@@ -34,7 +34,7 @@ export const EditTodo: FC<Props> = ({
         type="text"
       />
       <span onClick={() => editDone(todo.id)} className="text-lime-500 text-xs">
-        Done
+        ✅
       </span>
     </div>
   );
