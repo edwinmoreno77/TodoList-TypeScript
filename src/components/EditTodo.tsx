@@ -19,10 +19,13 @@ export const EditTodo: FC<EditTodoInterface> = ({
         }
         onKeyDown={(e) => editTodoFinished(e, todo.id)}
         value={taskToEdit.content}
-        className="w-full px-3 text-lime-600"
+        className="w-full py-1 border-y-2 px-3 italic text-lime-600"
         type="text"
       />
-      <span onClick={() => editDone(todo.id)} className="text-lime-500 text-xs">
+      <span
+        onClick={() => editDone(todo.id)}
+        className="hover: hover:brightness-150 text-xs"
+      >
         ✅
       </span>
     </div>
