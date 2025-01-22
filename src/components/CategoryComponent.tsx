@@ -9,7 +9,7 @@ export const CategoryComponent: FC<CategoryInterface> = ({
   pendingTodos,
 }) => {
   return (
-    <section className="flex justify-between px-5 py-2 font-extralight italic text-tiny sm:text-sm w-full bg-slate-900 rounded-b-xl">
+    <section className="flex justify-between px-5 py-2 font-extralight italic text-tiny sm:text-sm w-2/4 bg-slate-900 rounded-b-xl border-2 border-slate-700">
       <button
         type="button"
         onClick={() => todosToShow("todos")}

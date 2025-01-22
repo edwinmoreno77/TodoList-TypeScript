@@ -29,8 +29,8 @@ function App() {
 
   return (
     <>
-      <div className="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_50%,#00047d_85%)]"></div>
       <div className="flex flex-col justify-center items-center text-white pt-10 h-screen">
+        <div className="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_50%,#00047d_85%)]"></div>
         <h1 className="text-3xl md:text-5xl font-bold font-serif mb-12 p-5">
           Lista de Tareas
         </h1>
@@ -42,7 +42,7 @@ function App() {
           className="w-2/4 rounded-t-lg text-black p-2"
           type="text"
         />
-        <article className="flex flex-col justify-between w-2/4 h-96 rounded-b-xl mb-10 border-2 border-slate-600">
+        <article className="flex flex-col justify-between w-2/4 h-96 border-2 border-slate-600">
           <ul className="font-semibold italic text-slate-300 cursor-pointer pb-8 overflow-auto scrollbar dark:scrollbar-thumb-blue-900 dark:scrollbar-track-gray-950">
             {todos.length < 1 && (
               <div className="flex justify-center items-center min-h-44">
@@ -77,14 +77,14 @@ function App() {
               </div>
             ))}
           </ul>
-          <CategoryComponent
-            todosToShow={todosToShow}
-            activeCategory={activeCategory}
-            todos={todos}
-            completeTodos={completeTodos}
-            pendingTodos={pendingTodos}
-          />
         </article>
+        <CategoryComponent
+          todosToShow={todosToShow}
+          activeCategory={activeCategory}
+          todos={todos}
+          completeTodos={completeTodos}
+          pendingTodos={pendingTodos}
+        />
       </div>
     </>
   );
