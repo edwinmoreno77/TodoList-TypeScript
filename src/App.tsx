@@ -30,7 +30,7 @@ function App() {
       <div className="flex flex-col justify-center items-center text-white h-screen">
         <div className="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_50%,#00047d_85%)]"></div>
         <h1 className="text-3xl tracking-tighter md:text-5xl font-bold font-serif mb-12">
-          EFren es un buyityo de ppa
+          Lista de tareas
         </h1>
         <input
           onChange={(e) => setTodo({ ...todo, content: e.target.value })}
