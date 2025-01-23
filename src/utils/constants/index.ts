@@ -1,6 +1,6 @@
 export const modelTodo = {
-  id: 1,
   content: "",
+  id: 1,
   isCompleted: false,
   isEditing: false,
 };

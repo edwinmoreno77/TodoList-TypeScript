@@ -3,14 +3,15 @@ import { Todo } from "../types";
 import { modelTodo } from "../utils/constants";
 
 export const useTodo = () => {
-  const [isEditingTodo, setIsEditingTodo] = useState<boolean>(false);
-  const [lastAddedId, setLastAddedId] = useState<number | null>(null);
-  const [activeCategory, setActiveCategory] = useState<string>("todos");
-  const [taskToEdit, setTaskToEdit] = useState<Todo>(modelTodo);
-  const [todo, setTodo] = useState<Todo>(modelTodo);
   const [todos, setTodos] = useState<Todo[]>([]);
 
+  const [activeCategory, setActiveCategory] = useState<string>("todos");
   const [categoryTodo, setCategoryTodo] = useState<Todo[]>(todos);
+  const [isEditingTodo, setIsEditingTodo] = useState<boolean>(false);
+  const [lastAddedId, setLastAddedId] = useState<number | null>(null);
+  const [taskToEdit, setTaskToEdit] = useState<Todo>(modelTodo);
+  const [todo, setTodo] = useState<Todo>(modelTodo);
+
   const completeTodos = todos.filter((todo) => todo.isCompleted === true);
   const pendingTodos = todos.filter((todo) => todo.isCompleted === false);
 
@@ -118,24 +119,24 @@ export const useTodo = () => {
   }, [todos, setLastAddedId]);
 
   return {
-    todos,
-    todo,
-    taskToEdit,
-    lastAddedId,
-    completeTodos,
-    pendingTodos,
-    isEditingTodo,
-    categoryTodo,
     activeCategory,
-    setLastAddedId,
-    setTodo,
-    setTaskToEdit,
+    addTodo,
+    categoryTodo,
     completeTodo,
+    completeTodos,
     deleteTodo,
+    editDone,
     editTodo,
     editTodoFinished,
-    addTodo,
-    editDone,
+    isEditingTodo,
+    lastAddedId,
+    pendingTodos,
+    setLastAddedId,
+    setTaskToEdit,
+    setTodo,
+    taskToEdit,
+    todo,
+    todos,
     todosToShow,
   };
 };

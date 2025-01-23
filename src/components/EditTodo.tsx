@@ -2,10 +2,10 @@ import { FC } from "react";
 import { EditTodoInterface } from "../types";
 
 export const EditTodo: FC<EditTodoInterface> = ({
+  editDone,
+  editTodoFinished,
   setTaskToEdit,
   taskToEdit,
-  editTodoFinished,
-  editDone,
   todo,
 }) => {
   return (

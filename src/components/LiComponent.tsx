@@ -2,11 +2,11 @@ import { FC } from "react";
 import { LiCompInterface } from "../types";
 
 export const LiComponent: FC<LiCompInterface> = ({
-  todo,
   completeTodo,
-  isEditingTodo,
-  editTodo,
   deleteTodo,
+  editTodo,
+  isEditingTodo,
+  todo,
 }) => {
   return (
     <li
